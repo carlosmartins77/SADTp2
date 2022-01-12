@@ -1,0 +1,3 @@
+dashboard geral
+	- produtos/vendas/categoria
+	- prodtuos/clientes
