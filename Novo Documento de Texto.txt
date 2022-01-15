@@ -1,3 +1,5 @@
 dashboard geral
-	- produtos/vendas/categoria
-	- prodtuos/clientes
+	- vendas/categoria
+	- produtos
+
+http://wdi.worldbank.org/table/3.1
