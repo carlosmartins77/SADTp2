@@ -3,3 +3,28 @@ dashboard geral
 	- produtos
 
 http://wdi.worldbank.org/table/3.1
+
+order avg total
+order_avg = (MEDIANX(FactInternetSales, (FactInternetSales[OrderQuantity]*FactInternetSales[UnitPrice])*(1-FactInternetSales[UnitPriceDiscountPct]) + FactInternetSales[Freight] + FactInternetSales[TaxAmt]) + MEDIANX(FactResellerSales, (FactResellerSales[OrderQuantity]*FactResellerSales[UnitPrice])*(1-FactResellerSales[UnitPriceDiscountPct]) + FactResellerSales[Freight] + FactResellerSales[TaxAmt])/2)
+
+
+most ordered product total
+Most_ordered_product = 
+MAX(
+    CONCATENATEX(
+    TOPN(
+        1 
+        , VALUES(DimProduct[ModelName]) 
+        , CALCULATE(SUM(FactInternetSales[OrderQuantity])) 
+    )
+    , [ModelName]
+    , ", "
+), CONCATENATEX(
+    TOPN(
+        1 
+        , VALUES(DimProduct[ModelName]) 
+        , CALCULATE(SUM(FactResellerSales[OrderQuantity])) 
+    )
+    , [ModelName]
+    , ", "
+))
